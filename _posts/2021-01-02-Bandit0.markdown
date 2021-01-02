@@ -11,6 +11,7 @@ categories: Linux Wargame Bandit
 ### Commands you may need to solve this level
 
 >ssh
+
 ### Helpful Reading Material
 
 >Secure Shell (SSH) on Wikipedia         
@@ -25,4 +26,4 @@ int main()
     return 0;
 }
 ```
-Link: [overthewire](https://overthewire.org/wargames/bandit/bandit0.html)
+Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit0.html)
