@@ -12,8 +12,8 @@ show_excerpts: true # set to true to show excerpts on the homepage
 sass:
   sass_dir: _sass
 plainwhite:
-  name: Adam Denisov
-  tagline: Developer. Designer
+  name: MinJun Kim
+  tagline: Developer. Student
   date_format: "%b %-d, %Y"
   sitemap: true # set to true to generate sitemap.xml content
   search: true # set to true to enable searchbar
@@ -26,20 +26,20 @@ plainwhite:
     - post
   # generate social links in footer
   social_links:
-    twitter: samarsault
-    github:  samarsault
-    linkedIn: in/samarsault
+    #twitter: samarsault
+    #github:  samarsault
+    #linkedIn: in/samarsault
     #rss: rss
     #dribbble: jekyll
     #flickr:   jekyll
-    #instagram: jekyll
+    instagram: https://www.instagram.com/______mele______/
     #pinterest: jekyll
     #youtube: jekyll
     #facebook: jekyll
     #soundcloud: jekyll
     #telegram: jekyll
     #gitlab: jekyll
-    #email: jekyll
+    email: mele0404@naver.com
 
     # Mastodon instances
     # mastodon:
@@ -54,7 +54,6 @@ plainwhite:
 # - about.md
 
 # Build settings
-theme: plainwhite
 remote_theme: samarsault/plainwhite-jekyll
 
 plugins:
