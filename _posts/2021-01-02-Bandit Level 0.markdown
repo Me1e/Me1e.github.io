@@ -4,6 +4,8 @@ title:  "#Bandit Level 0"
 date:   2021-01-02 17:25:00 +0830
 categories: Linux Wargame Bandit
 ---
+문제를 풀어보자
+lets solve the problem
 # Bandit Level 0
 
 ## Level Goal
@@ -28,4 +30,6 @@ int main()
     return 0;
 }
 ```
-Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit0.html, "bandit link")
+
+Link: [overthewire.org][link]
+[link]: https://overthewire.org/wargames/bandit/bandit0.html
