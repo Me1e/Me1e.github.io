@@ -7,7 +7,7 @@ categories: Linux Wargame Bandit
 
 The goal of this level is for you to log into the game using SSH. The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.
 
-Level0에 접속해보자 
+Level 0 에 접속해보자 
 ```
 % ssh -p 2220 bandit0@bandit.labs.overthewire.org 
 ```
@@ -16,7 +16,7 @@ Level0에 접속해보자
 ```
 bandit0@bandit:~$
 ```
-가 보이고 Level0은 끝난다
+가 보이고 Level 0 은 끝난다
 
 
 Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit0.html)

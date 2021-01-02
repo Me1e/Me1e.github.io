@@ -38,7 +38,7 @@ bandit0@bandit:~$ cat readme
 boJ9jbbUNNfktd78OOpsqOltutMc3MY1
 ```
 
-다음 단계를 위한 flag 값의 발견으로 Level0 → Level1은 끝난다
+다음 단계를 위한 flag 값의 발견으로 Level 0 → Level 1 은 끝난다
 
 
 
