@@ -38,8 +38,8 @@ bandit0@bandit:~$ cat readme
 boJ9jbbUNNfktd78OOpsqOltutMc3MY1
 ```
 
-다음 단계를 위한 flag 값의 발견으로 Level0은 끝난다
+다음 단계를 위한 flag 값의 발견으로 Level0 → Level1은 끝난다
 
 
 
-Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit0.html)
+Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit1.html)
