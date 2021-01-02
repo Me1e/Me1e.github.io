@@ -11,14 +11,11 @@ categories: Linux Wargame Bandit
 ### Commands you may need to solve this level
 
 >ssh
-랄로
 ### Helpful Reading Material
 
->Secure Shell (SSH) on Wikipedia
+>Secure Shell (SSH) on Wikipedia         
 >How to use SSH on wikiHow
 
-
-랄랄
 ```c
 import <stdio.h>
 
@@ -28,5 +25,4 @@ int main()
     return 0;
 }
 ```
-Link: [overthewire][1]
-[1]: https://overthewire.org/wargames/bandit/bandit0.html
+Link: [overthewire](https://overthewire.org/wargames/bandit/bandit0.html)
