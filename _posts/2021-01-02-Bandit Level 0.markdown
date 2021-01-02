@@ -2,9 +2,22 @@
 layout: post
 title:  "#Bandit Level 0"
 date:   2021-01-02 17:25:00 +0830
-categories: Wargame Bandit Linux
+categories: Linux Wargame Bandit
 ---
-드디어 만들었다 ㅠㅠ
+# Bandit Level 0
+
+## Level Goal
+
+>The goal of this level is for you to log into the game using SSH. The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.
+
+## Commands you may need to solve this level
+
+>ssh
+
+## Helpful Reading Material
+
+>Secure Shell (SSH) on Wikipedia
+>How to use SSH on wikiHow
 
 ```c
 import <stdio.h>
@@ -15,3 +28,4 @@ int main()
     return 0;
 }
 ```
+Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit0.html, "bandit link")
