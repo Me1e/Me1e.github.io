@@ -17,7 +17,7 @@ categories: Linux Wargame Bandit
 >Secure Shell (SSH) on Wikipedia         
 >How to use SSH on wikiHow
 
-```linux
+```c
 % ssh -p 2220 bandit0@bandit.labs.overthewire.org 
 ```
 Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit0.html)
