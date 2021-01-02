@@ -4,26 +4,22 @@ title:  "#Bandit Level 0"
 date:   2021-01-02 17:25:00 +0830
 categories: Linux Wargame Bandit
 ---
-# Level Goal
 
->The goal of this level is for you to log into the game using SSH. The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.
+The goal of this level is for you to log into the game using SSH. The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.
 
-# Commands you may need to solve this level
-
->ssh
-
-# Helpful Reading Material
-
->Secure Shell (SSH) on Wikipedia         
->How to use SSH on wikiHow
-
-우선 level0에 접속해보자
-```github
+Level0에 접속해보자 비밀번호는 bandit0이다
+```
 % ssh -p 2220 bandit0@bandit.labs.overthewire.org 
 ```
 
-디렉토리 안에 있는 목록을 확인해보자
-```dark
+뭘 할지 모르겠으니 디렉토리 목록을 확인해보자    
+디렉토리 하위 목록을 표시해 주는 명령어인 ls(list segments)에 디렉토리의 내용을 자세히 출력해주는 -l(long)과 숨겨진 파일, 디렉토리까지 볼 수 있는 -a를 합쳐   
+```
+$ ls -al
+```
+를 입력해보자   
+
+```
 bandit0@bandit:~$ ls -al
 total 24
 drwxr-xr-x  2 root    root    4096 May  7  2020 .
@@ -33,5 +29,22 @@ drwxr-xr-x 41 root    root    4096 May  7  2020 ..
 -rw-r--r--  1 root    root     675 May 15  2017 .profile
 -rw-r-----  1 bandit1 bandit0   33 May  7  2020 readme
 ```
+
+readme 말고는 딱히 볼게 없다   
+
+readme를 읽어보자   
+리눅스 시스템에서 파일을 읽는 명령어는
+```
+$ cat 파일이름
+```
+이다   
+
+
+```
+bandit0@bandit:~$ cat readme
+boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+```
+
+다음 단계를 위한 flag 값의 발견으로 Level0은 끝난다
 
 Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit0.html)
