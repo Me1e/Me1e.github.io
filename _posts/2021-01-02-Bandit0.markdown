@@ -17,13 +17,7 @@ categories: Linux Wargame Bandit
 >Secure Shell (SSH) on Wikipedia         
 >How to use SSH on wikiHow
 
-```c
-import <stdio.h>
-
-int main()
-{
-    printf("Hello World!");
-    return 0;
-}
+```linux
+% ssh -p 2220 bandit0@bandit.labs.overthewire.org 
 ```
 Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit0.html)
