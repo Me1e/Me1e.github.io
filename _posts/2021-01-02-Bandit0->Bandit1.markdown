@@ -28,13 +28,13 @@ drwxr-xr-x 41 root    root    4096 May  7  2020 ..
 readme를 읽어보자   
 리눅스 시스템에서 파일을 읽는 명령어는
 ```
-$ cat 파일이름
+$ cat ./파일이름
 ```
 이다   
 
 
 ```
-bandit0@bandit:~$ cat readme
+bandit0@bandit:~$ cat ./readme
 boJ9jbbUNNfktd78OOpsqOltutMc3MY1
 ```
 
