@@ -41,4 +41,4 @@ flag 값의 발견으로 Level 7 → Level 8 은 끝난다
 
 
 
-Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit7.html)
+Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit8.html)

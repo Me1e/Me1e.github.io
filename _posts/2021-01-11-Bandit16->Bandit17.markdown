@@ -1,0 +1,151 @@
+---
+layout: post
+title:  "#Bandit Level 16 → Level 17"
+date:   2021-01-11 17:00:08 +0830
+categories: Linux Wargame Bandit
+---
+
+The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it
+
+```
+bandit16@bandit:~$ nc -zvnw 1 127.0.0.1 31000-32000
+(UNKNOWN) [127.0.0.1] 31960 (?) open
+(UNKNOWN) [127.0.0.1] 31790 (?) open
+(UNKNOWN) [127.0.0.1] 31691 (?) open
+(UNKNOWN) [127.0.0.1] 31518 (?) open
+(UNKNOWN) [127.0.0.1] 31046 (?) open
+```
+여러 포트가 열려있다
+
+모든 포트를 확인해본 결과 31790번 포트가 주어진 조건과 일치한다(현재 레벨의 비밀번호 입력시 다음 레벨의 비밀번호 반환)
+
+접속해보자
+
+```
+bandit16@bandit:~$ openssl s_client -connect localhost:31790
+CONNECTED(00000003)
+depth=0 CN = localhost
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = localhost
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=localhost
+   i:/CN=localhost
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICBjCCAW+gAwIBAgIERpugdDANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDDAls
+b2NhbGhvc3QwHhcNMjAxMjAzMTIyNTAyWhcNMjExMjAzMTIyNTAyWjAUMRIwEAYD
+VQQDDAlsb2NhbGhvc3QwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMeJ7q8+
+/5v/Q0OcS1qrtLv1GSYrXx8tddEmigEkXjxt96mbA62A7XPH6QZe5vVv6yOuS2JO
+AvtwxWXeb5lAkcR88pkvITjPa1QX+Q4LqNDpGs4evJDmBcX7NG8Sx9zFXChq5eRN
+Mis7GMk/RtwGbniNei1heI96rg2t0mRbR1kRAgMBAAGjZTBjMBQGA1UdEQQNMAuC
+CWxvY2FsaG9zdDBLBglghkgBhvhCAQ0EPhY8QXV0b21hdGljYWxseSBnZW5lcmF0
+ZWQgYnkgTmNhdC4gU2VlIGh0dHBzOi8vbm1hcC5vcmcvbmNhdC8uMA0GCSqGSIb3
+DQEBBQUAA4GBADYJu67M8KiVPJo1HZsO+TW4bRr8rtrEKdirbH3CUEsZo3Wx6/PP
+C8w/rWjx7CnnjF4qrpZLFlZ2TY+/pNOIBhixCKS9MHZXVix4GAHP3BkUCExc1jE9
+mp1AQwblNeka4fPVkIrHfrRZQRJr96wT+YejVQqenVX6cFF2xpkpD+Me
+-----END CERTIFICATE-----
+subject=/CN=localhost
+issuer=/CN=localhost
+---
+No client certificate CA names sent
+Peer signing digest: SHA512
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 1019 bytes and written 269 bytes
+Verification error: self signed certificate
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 1024 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: B2282F7CAFC1BCD224358767521F347F3A35134498765178C8BA04E0B97AB92E
+    Session-ID-ctx: 
+    Master-Key: D03A866DBA1C7529F0D4DB0F4294A1B3D97E60386626211746785E7BDAE99B059B4E0F9EF351432851FF51D1BBFC9838
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - 71 44 15 26 06 51 98 56-4a 2f 37 3a 47 04 b9 e3   qD.&.Q.VJ/7:G...
+    0010 - 52 51 c4 d8 a4 c7 e7 42-35 3d 3f 5d bf 45 74 37   RQ.....B5=?].Et7
+    0020 - 93 17 c2 3e 32 d5 39 47-c9 71 7a a5 f1 47 3b 71   ...>2.9G.qz..G;q
+    0030 - a4 a7 b9 1f a1 cd 6e e1-f4 98 cc 83 cd 92 b1 03   ......n.........
+    0040 - 61 74 43 ce e7 df 5b 62-01 65 ba e2 28 f1 e0 3b   atC...[b.e..(..;
+    0050 - 2b bc db 7a ab 06 04 d9-59 f7 d1 9c 13 67 7e 87   +..z....Y....g~.
+    0060 - 00 ae 9e f5 cd 40 b9 d8-f5 1e 76 fb f8 7c a7 2d   .....@....v..|.-
+    0070 - e4 07 76 e5 36 d3 7c 2a-ba 32 3b 51 bd 47 3d 13   ..v.6.|*.2;Q.G=.
+    0080 - 2e 73 11 0f 49 8e 54 5f-ce da ba 15 6e 3c 4c a1   .s..I.T_....n<L.
+    0090 - 51 ee a5 b4 d7 0b 74 8c-a1 38 dd 93 81 39 da 08   Q.....t..8...9..
+
+    Start Time: 1610371853
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+    Extended master secret: yes
+---
+```
+현재 레벨의 비밀번호를 입력하면
+```
+cluFn7wTiGryunymYOu4RcffSxQluehd
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+
+closed
+```
+RSA key 데이터를 얻을 수 있다
+
+RSA key 데이터를 사용할 수 있게 파일을 만들자
+```
+bandit16@bandit:~$ mkdir /tmp/new
+bandit16@bandit:~$ vi /tmp/new/RSAKey
+```
+만든 파일로 다음 레벨에 접속해 보자
+```
+bandit16@bandit:~$ ssh -i /tmp/new/RSAKey bandit17@127.0.0.1
+```
+비밀번호 없이 접속된다
+
+한 단계 높은 권한을 얻었으니 비밀번호를 알아내고 사용해서 다음 단계로 넘어가보자
+```
+bandit17@bandit:~$ cat /etc/bandit_pass/bandit17
+xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
+```
+
+flag 값의 발견으로 Level 16 → Level 17 은 끝난다
+
+
+Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit17.html)

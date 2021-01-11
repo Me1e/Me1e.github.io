@@ -1,0 +1,105 @@
+---
+layout: post
+title:  "#Bandit Level 15 → Level 16"
+date:   2021-01-11 17:00:07 +0830
+categories: Linux Wargame Bandit
+---
+
+The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL encryption
+
+Helpful note: Getting “HEARTBEATING” and “Read R BLOCK”? Use -ign_eof and read the “CONNECTED COMMANDS” section in the manpage. Next to ‘R’ and ‘Q’, the ‘B’ command also works in this version of that command…
+
+```
+bandit15@bandit:~$ nc -zvnw 1 127.0.0.1 30001
+(UNKNOWN) [127.0.0.1] 30001 (?) open
+```
+30001번 포트가 열려있음을 확인했다
+
+30001번 포트는 SSL 이므로 암호화 통신을 하기 때문에 접속하려면 적절한 방법을 써야한다   
+SSL 접속을 하기 위해선 s_client 를 활용한 암호문 통신을 사용해야 한다(앞서 사용한 nc 는 평문 통신이다)
+
+s_client 를 이용해 30001번 포트로 접속해보자
+
+```
+bandit15@bandit:~$ openssl s_client -connect 127.0.0.1:30001
+CONNECTED(00000003)
+depth=0 CN = localhost
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = localhost
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=localhost
+   i:/CN=localhost
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICBjCCAW+gAwIBAgIEPksiGTANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDDAls
+b2NhbGhvc3QwHhcNMjEwMTAzMTkzODIzWhcNMjIwMTAzMTkzODIzWjAUMRIwEAYD
+VQQDDAlsb2NhbGhvc3QwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAM2B6gJt
+YTxcQPphtWBuM1ge8cuuvdaD4jc0LZ4PMQzqxH3xnw1pRWIJPUXHxoqbC4xxXNLk
+6zR0CrLH2AfPraS3gMPy7MtmDoGpNea3XJ/t1jkcxSNPsTfoGjpHhJ686lmQLsO4
+CAsLHYupe/dFwHwQYjfmp8M3rpWm8jv3kzK9AgMBAAGjZTBjMBQGA1UdEQQNMAuC
+CWxvY2FsaG9zdDBLBglghkgBhvhCAQ0EPhY8QXV0b21hdGljYWxseSBnZW5lcmF0
+ZWQgYnkgTmNhdC4gU2VlIGh0dHBzOi8vbm1hcC5vcmcvbmNhdC8uMA0GCSqGSIb3
+DQEBBQUAA4GBAFEvYhX6w87jWnKLpx9iSVhI1cBxNS5tzzOT+XzjIiZF5v78QJcp
+I7h4z4ncZVOJGazdArF+6/B2uHFT7+QKVmQNbnX/wSAEJM0Mvp9qHOlMYaRvwP34
+BRXc6VqbVQ4EbPTU5UcN1Yp7lLJ4DuNYfChFpX0xCTkhIvGWqXkGecyP
+-----END CERTIFICATE-----
+subject=/CN=localhost
+issuer=/CN=localhost
+---
+No client certificate CA names sent
+Peer signing digest: SHA512
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 1019 bytes and written 269 bytes
+Verification error: self signed certificate
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 1024 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: 7F59E0225A424334D76B78BEF0B7301E510431CF69C518344BB66AFF8797CA11
+    Session-ID-ctx: 
+    Master-Key: 43962B6A853DD2171EB8279B0782F8E262D7FE286BFAA3A88D9F3F588B2EFF89920D3361B8E0EDCDDB20EBDC913F234A
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - a9 48 f8 cd 59 86 5a b6-19 9c 9f f8 42 95 26 f2   .H..Y.Z.....B.&.
+    0010 - 51 a2 fa f3 d2 37 cf c2-a5 3e 77 c9 c9 f8 56 45   Q....7...>w...VE
+    0020 - ad 65 ee bd 43 b1 a5 35-11 57 e4 9a 00 13 2a be   .e..C..5.W....*.
+    0030 - 72 63 63 45 05 e4 7b 4b-09 f5 e3 cf e0 c0 7d e4   rccE..{K......}.
+    0040 - dc 1a db 25 19 d6 6a 04-c4 a6 cf 7c 37 ee 9c 54   ...%..j....|7..T
+    0050 - b8 53 09 c3 cf dc 00 ed-56 ba 67 9d 57 72 12 65   .S......V.g.Wr.e
+    0060 - b2 68 d1 d5 21 61 94 c0-75 35 99 64 d2 e7 25 88   .h..!a..u5.d..%.
+    0070 - 31 45 31 81 55 ee 3d 27-30 6e 78 40 86 1c 0b 8e   1E1.U.='0nx@....
+    0080 - f6 e8 21 14 fc 6c ab 23-c5 be ac 04 bf c4 b8 00   ..!..l.#........
+    0090 - 29 62 ce d6 f3 e7 49 8d-51 91 b7 bd f1 fa 84 99   )b....I.Q.......
+
+    Start Time: 1610368303
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+    Extended master secret: yes
+---
+```
+
+현재 레벨의 비밀번호를 입력해보자
+```
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+Correct!
+cluFn7wTiGryunymYOu4RcffSxQluehd
+```
+
+flag 값의 발견으로 Level 15 → Level 16 은 끝난다
+
+
+Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit16.html)

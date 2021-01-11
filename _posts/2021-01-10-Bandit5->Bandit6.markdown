@@ -78,4 +78,4 @@ flag 값의 발견으로 Level 5 → Level 6 은 끝난다
 
 
 
-Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit5.html)
+Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit6.html)

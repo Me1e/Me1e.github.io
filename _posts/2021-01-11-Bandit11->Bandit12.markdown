@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "#Bandit Level 11 → Level 12"
+date:   2021-01-11 17:00:03 +0830
+categories: Linux Wargame Bandit
+---
+
+The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+```
+bandit11@bandit:~$ ls -al
+total 24
+drwxr-xr-x  2 root     root     4096 May  7  2020 .
+drwxr-xr-x 41 root     root     4096 May  7  2020 ..
+-rw-r--r--  1 root     root      220 May 15  2017 .bash_logout
+-rw-r--r--  1 root     root     3526 May 15  2017 .bashrc
+-rw-r-----  1 bandit12 bandit11   49 May  7  2020 data.txt
+-rw-r--r--  1 root     root      675 May 15  2017 .profile
+bandit11@bandit:~$ file ./data.txt 
+./data.txt: ASCII text
+bandit11@bandit:~$ cat ./data.txt 
+Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh
+```
+data.txt 파일은 카이사르 암호화 되어있다   
+"A" 문자를 13자리 이동시켜서 "N" 으로 만드는 것이다
+
+문자열 재배치를 위해 tr 명령어를 사용해보자
+```
+$ cat ./data.txt | tr [A-Za-z] [N-ZA-Mn-za-m]
+```
+위와 같이 입력하면 모든 문자열을 13자리 이동시켜 재배치 할 수 있다
+```
+bandit11@bandit:~$ cat ./data.txt | tr [A-Za-z] [N-ZA-Mn-za-m]
+The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+```
+
+flag 값의 발견으로 Level 11 → Level 12 은 끝난다
+
+
+Link: [overthewire.org](https://overthewire.org/wargames/bandit/bandit12.html)
